@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 
 namespace TestingVM.controllers
 {
@@ -11,6 +12,12 @@ namespace TestingVM.controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private ILogger<ValuesController> _logger;
+
+        public ValuesController(ILogger<ValuesController> logger)
+        {
+            _logger = logger;
+        }
 
         [HttpGet("addUser/{username}")]
         public async Task<IActionResult> GetUWConditions(string username)
@@ -18,6 +25,9 @@ namespace TestingVM.controllers
 
 
             var a = "encomp_usr_" + username;
+            System.Diagnostics.Trace.TraceInformation($"System diagnostics {a}");
+            _logger.LogInformation($"Returning the result {a}");
+
             return new JsonResult(a);
         }
     }
