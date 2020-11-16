@@ -24,7 +24,7 @@ namespace TestingVM.controllers
         {
 
 
-            var a = "encomp_usr_" + username;
+            var a = "encomp_usr_v1" +username;
             System.Diagnostics.Trace.TraceInformation($"System diagnostics {a}");
             _logger.LogInformation($"Returning the result {a}");
 
